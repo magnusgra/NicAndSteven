@@ -24,6 +24,27 @@
         <script>
             $(document).ready(function() {
                 
+                var minutesLabel = document.getElementById("minutes");
+                var secondsLabel = document.getElementById("seconds");
+                var totalSeconds = 0;
+                setInterval(setTime, 1000);
+
+                function setTime() {
+                    ++totalSeconds;
+                    secondsLabel.innerHTML = pad(totalSeconds%60);
+                    minutesLabel.innerHTML = pad(parseInt(totalSeconds/60));
+                }
+
+                function pad(val) {
+                    var valString = val + "";
+                    if(valString.length < 2) {
+                        return "0" + valString;
+                    }
+                    else {
+                        return valString;
+                    }
+                }       
+                
                 var solutionHtml = "<div id=\"tre\" title=\"tre\"></div>\n" +
                 "<div id=\"bygning5\" class=\"bygninger\" title=\"bygg5\"></div>\n" +
                 "<div id=\"gress\" title=\"gress\"></div>\n" +
@@ -124,6 +145,7 @@
     <section id="content">
 
        <section class="block">
+           <label id="minutes">00</label>:<label id="seconds">00</label>
            <p>Her er det noe som er fryktelig galt. <br>
                Steven har kludret med html-koden slik at den ikke henger sammen med css-en. <br>
                Her skal det være en vei som Nic kan følge. Fiks html-koden slik at den passer med css-en.</p>
